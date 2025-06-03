@@ -9,5 +9,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "Hello World aaaaaaaaaaaaaaaaaaaaaaaaaaa!!";
-    }}
+        return "Hello World!";
+    }
+}
