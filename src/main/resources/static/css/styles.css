@@ -1,0 +1,112 @@
+/* Import the original styles from frontend_base/styles.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #4b49ac;
+  --primary-color-dark: #3f3d91;
+  --secondary-color: #ff5c8d;
+  --text-color: #1d1d1d;
+  --white: #ffffff;
+
+  --container-padding: 5rem 1rem;
+  --section-padding: 5rem 0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--white);
+}
+
+/* Add new styles for login and registration forms */
+.login-container,
+.register-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-dark);
+}
+
+/* Dashboard styles */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.dashboard-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Alert styles */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.alert-error {
+    background-color: #ffe6e6;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+}
+
+.alert-success {
+    background-color: #e6ffe6;
+    color: #008000;
+    border: 1px solid #008000;
+}

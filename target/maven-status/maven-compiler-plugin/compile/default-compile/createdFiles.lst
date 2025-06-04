@@ -1,0 +1,10 @@
+com\freitas\model\Appointment.class
+com\freitas\repo\AppointmentRepository.class
+com\freitas\controller\AppointmentController.class
+com\freitas\model\Pet.class
+com\freitas\repo\PetRepository.class
+com\freitas\repo\ClientRepository.class
+com\freitas\model\Client.class
+com\freitas\service\AppointmentService.class
+com\freitas\exemplo1\Exemplo1Application$1.class
+com\freitas\exemplo1\Exemplo1Application.class

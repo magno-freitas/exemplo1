@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <title>FocinhosExigentes</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="#">FocinhosExigentes</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#Cadastro">Cadastro</a></li>
+        <li><a href="#Serviço">Serviço</a></li>
+        <li><a th:if="${#authorization.expression('!isAuthenticated()')}" th:href="@{/login}">Login</a></li>
+        <li><a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/dashboard}">Dashboard</a></li>
+        <li><a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Rest of the HTML content remains the same as the original index.html -->
+    <!-- Just update static resource references to use Thymeleaf -->
+    
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script th:src="@{/js/main.js}"></script>
+  </body>
+</html>

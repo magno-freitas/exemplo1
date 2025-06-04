@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Focinhos Exigentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            padding: 1rem;
+            border: none;
+            border-radius: 5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #c5bef5;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .register-link a {
+            color: var(--text-dark);
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff3333;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="../index.html">FocinhosExigentes</a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="register.html">Cadastro</a></li>
+            <li><a href="#Serviço">Serviço</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="section__container">
+        <div class="login-container">
+            <h2 class="section__header">Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Entrar</button>
+                <div id="errorMessage" class="error-message">
+                    E-mail ou senha incorretos
+                </div>
+            </form>
+            <div class="register-link">
+                Ainda não tem uma conta? <a href="register.html">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu toggle functionality
+        const menuBtn = document.getElementById("menu-btn");
+        const navLinks = document.getElementById("nav-links");
+        const menuBtnIcon = menuBtn.querySelector("i");
+
+        menuBtn.addEventListener("click", (e) => {
+            navLinks.classList.toggle("open");
+            const isOpen = navLinks.classList.contains("open");
+            menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
+        });
+
+        // Login form handler
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // TODO: Send data to backend API
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Store token in localStorage
+                localStorage.setItem('token', data.token);
+                // Redirect to dashboard
+                window.location.href = '/dashboard';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

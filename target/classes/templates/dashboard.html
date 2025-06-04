@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FocinhosExigentes</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <nav>
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="/">FocinhosExigentes</a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#appointments">Appointments</a></li>
+            <li><a href="#pets">My Pets</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Welcome, <span sec:authentication="name"></span>!</h1>
+
+        <section id="appointments" class="dashboard-section">
+            <h2>My Appointments</h2>
+            <button onclick="showAppointmentForm()" class="btn">Schedule New Appointment</button>
+            <div id="appointmentsList">
+                <!-- Appointments will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <section id="pets" class="dashboard-section">
+            <h2>My Pets</h2>
+            <button onclick="showPetForm()" class="btn">Add New Pet</button>
+            <div id="petsList">
+                <!-- Pets will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <section id="profile" class="dashboard-section">
+            <h2>My Profile</h2>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="profileFirstName">First Name:</label>
+                    <input type="text" id="profileFirstName" name="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="profileLastName">Last Name:</label>
+                    <input type="text" id="profileLastName" name="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="profilePhone">Phone:</label>
+                    <input type="tel" id="profilePhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="profileAddress">Address:</label>
+                    <textarea id="profileAddress" name="address"></textarea>
+                </div>
+                <button type="submit" class="btn">Update Profile</button>
+            </form>
+        </section>
+    </div>
+
+    <script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Focinhos Exigentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background-color: var(--primary-color);
+            padding: 2rem;
+        }
+
+        .sidebar-menu {
+            margin-top: 2rem;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--text-dark);
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-card p {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .appointments-list {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .appointments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .new-appointment-btn {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .new-appointment-btn:hover {
+            background-color: #c5bef5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        td {
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .status-confirmed {
+            background-color: #e3f5e6;
+            color: #0a6c1f;
+        }
+
+        .status-pending {
+            background-color: #fff4e5;
+            color: #b25e09;
+        }
+
+        .status-cancelled {
+            background-color: #ffe5e5;
+            color: #c11414;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="nav__logo">
+                <a href="../index.html">FocinhosExigentes</a>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="active">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+                <a href="#">
+                    <i class="ri-calendar-line"></i>
+                    Agendamentos
+                </a>
+                <a href="#">
+                    <i class="ri-file-list-line"></i>
+                    Prontuários
+                </a>
+                <a href="#">
+                    <i class="ri-syringe-line"></i>
+                    Vacinas
+                </a>
+                <a href="#">
+                    <i class="ri-user-line"></i>
+                    Perfil
+                </a>
+                <a href="#" onclick="handleLogout()">
+                    <i class="ri-logout-box-line"></i>
+                    Sair
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h2>Dashboard</h2>
+                <div id="userInfo">
+                    Bem-vindo(a), <span id="userName">Usuário</span>
+                </div>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>Próximas Consultas</h3>
+                    <p id="upcomingAppointments">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Vacinas Pendentes</h3>
+                    <p id="pendingVaccines">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Pets Cadastrados</h3>
+                    <p id="registeredPets">0</p>
+                </div>
+            </div>
+
+            <div class="appointments-list">
+                <div class="appointments-header">
+                    <h3>Agendamentos</h3>
+                    <button class="new-appointment-btn" onclick="showNewAppointmentModal()">
+                        <i class="ri-add-line"></i> Novo Agendamento
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Pet</th>
+                            <th>Serviço</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTable">
+                        <!-- Appointments will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '../login/login.html';
+            }
+            // TODO: Validate token with backend
+        }
+
+        // Load user data
+        function loadUserData() {
+            // TODO: Fetch user data from backend
+            fetch('/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userName').textContent = data.name;
+                document.getElementById('upcomingAppointments').textContent = data.upcomingAppointments;
+                document.getElementById('pendingVaccines').textContent = data.pendingVaccines;
+                document.getElementById('registeredPets').textContent = data.registeredPets;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Load appointments
+        function loadAppointments() {
+            // TODO: Fetch appointments from backend
+            fetch('/api/appointments', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(appointments => {
+                const tbody = document.getElementById('appointmentsTable');
+                tbody.innerHTML = appointments.map(appointment => `
+                    <tr>
+                        <td>${appointment.date}</td>
+                        <td>${appointment.time}</td>
+                        <td>${appointment.petName}</td>
+                        <td>${appointment.service}</td>
+                        <td><span class="status-badge status-${appointment.status.toLowerCase()}">${appointment.status}</span></td>
+                        <td>
+                            <button onclick="editAppointment(${appointment.id})">
+                                <i class="ri-edit-line"></i>
+                            </button>
+                            <button onclick="cancelAppointment(${appointment.id})">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('token');
+            window.location.href = '../login/login.html';
+        }
+
+        function showNewAppointmentModal() {
+            // TODO: Implement appointment creation modal
+            alert('Funcionalidade em desenvolvimento');
+        }
+
+        function editAppointment(id) {
+            // TODO: Implement appointment editing
+            alert('Funcionalidade em desenvolvimento');
+        }
+
+        function cancelAppointment(id) {
+            // TODO: Implement appointment cancellation
+            if (confirm('Deseja realmente cancelar este agendamento?')) {
+                fetch(`/api/appointments/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(() => loadAppointments())
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Initialize dashboard
+        checkAuth();
+        loadUserData();
+        loadAppointments();
+    </script>
+</body>
+</html>
