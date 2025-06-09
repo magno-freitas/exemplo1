@@ -18,15 +18,19 @@ public class Pet {
     @Column(nullable = false)
     private String species;
 
+    @Column(nullable = false)
     private String breed;
 
-    @Column(nullable = false)
-    private LocalDate dateOfBirth;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
-    private User owner;
+    private Owner owner;
 
-    @Column(length = 500)
+    @Column
     private String medicalHistory;
+
+    @Column(name = "last_visit")
+    private LocalDate lastVisit;
 }

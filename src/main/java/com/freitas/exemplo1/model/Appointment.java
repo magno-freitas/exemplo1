@@ -17,19 +17,30 @@ public class Appointment {
     private Pet pet;
 
     @ManyToOne
-    @JoinColumn(name = "service_type_id", nullable = false)
-    private ServiceType serviceType;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     @Column(nullable = false)
-    private LocalDateTime appointmentTime;
+    private LocalDateTime startTime;
+
+    @Column(nullable = false)
+    private LocalDateTime endTime;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ServiceType serviceType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AppointmentStatus status = AppointmentStatus.SCHEDULED;
+
+    @Column(precision = 10, scale = 2)
+    private Double price;
 
     @Column(length = 500)
     private String notes;
 
-    @Enumerated(EnumType.STRING)
-    private AppointmentStatus status;
-
     public enum AppointmentStatus {
-        SCHEDULED, COMPLETED, CANCELLED
+        SCHEDULED, COMPLETED, CANCELLED, RESCHEDULED
     }
 }

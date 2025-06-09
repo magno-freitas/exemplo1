@@ -1,5 +1,5 @@
 package com.freitas.exemplo1;
-implement the backend part that is in the "vet" folder in my project with springboot build called "example1" already created, and also implement the frontend part that is in the "frontend_base" folder in the "example1" project. implement it in the best way, meeting all the necessary requirements completely, without errors and with excellent functioning so that the veterinary clinic website is good and well developed. basically I want to join the backend and frontend in my java project with spring boot build.
+
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
