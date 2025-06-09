@@ -3,6 +3,7 @@ package com.freitas.exemplo1.model;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,19 +19,20 @@ public class Pet {
     @Column(nullable = false)
     private String species;
 
-    @Column(nullable = false)
     private String breed;
 
-    @Column(name = "birth_date")
+    @Column(nullable = false)
     private LocalDate birthDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private Owner owner;
+    private Double weight;
 
-    @Column
+    @Column(length = 1000)
     private String medicalHistory;
 
-    @Column(name = "last_visit")
-    private LocalDate lastVisit;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client owner;
+
+    @OneToMany(mappedBy = "pet")
+    private List<Appointment> appointments;
 }
