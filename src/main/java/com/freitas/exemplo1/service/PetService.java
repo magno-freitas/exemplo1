@@ -1,8 +1,9 @@
 package com.freitas.exemplo1.service;
 
 import com.freitas.exemplo1.model.Pet;
-import com.freitas.exemplo1.repository.PetRepository;
 import com.freitas.exemplo1.repository.OwnerRepository;
+import com.freitas.exemplo1.repository.PetRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -5,6 +5,7 @@ import com.freitas.exemplo1.model.Pet;
 import com.freitas.exemplo1.model.User;
 import com.freitas.exemplo1.repository.MedicalRecordRepository;
 import com.freitas.exemplo1.repository.PetRepository;
+
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

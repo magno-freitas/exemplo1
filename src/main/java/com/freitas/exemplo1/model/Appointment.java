@@ -1,52 +1,85 @@
 package com.freitas.exemplo1.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import jakarta.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
-@Table(name = "appointments")
+@Data
+@NoArgsConstructor
 public class Appointment {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pet_id", nullable = false)
-    private Pet pet;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
-    private Client client;
-
-    @Column(nullable = false)
-    private LocalDateTime startTime;
-
-    @Column(nullable = false)
-    private LocalDateTime endTime;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_type_id", nullable = false)
-    private ServiceType serviceType;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private AppointmentStatus status = AppointmentStatus.SCHEDULED;
-
-    @Column(precision = 10, scale = 2)
-    private Double price;
-
-    @Column(length = 500)
+    
+    @NotNull
+    private Long clientId;
+    
+    @NotNull
+    private Long petId;
+    
+    @NotNull
+    private Long veterinarianId;
+    
+    @NotNull
+    @Future
+    private LocalDateTime appointmentDateTime;
+    
+    @NotNull
+    private String serviceType;
+    
+    private String status;
     private String notes;
-
-    public enum AppointmentStatus {
-        SCHEDULED, COMPLETED, CANCELLED, RESCHEDULED
+    private String cancellationReason;
+    
+    private LocalDateTime createdAt;
+    private LocalDateTime lastModifiedAt;
+    private LocalDateTime cancelledAt;
+    
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        if (status == null) {
+            status = "SCHEDULED";
+        }
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+        lastModifiedAt = LocalDateTime.now();
     }
 
-    // Helper method to set both sides of the relationship
     public void setPet(Pet pet) {
-        this.pet = pet;
-        this.client = pet != null ? pet.getOwner() : null;
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setPet'");
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
+    }
+
+    public void setCancelledAt(LocalDateTime cancelledAt) {
+        this.cancelledAt = cancelledAt;
+    }
+
+    public void setAppointmentDateTime(LocalDateTime appointmentDateTime) {
+        this.appointmentDateTime = appointmentDateTime;
+    }
+
+    public void setLastModifiedAt(LocalDateTime lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
     }
 }

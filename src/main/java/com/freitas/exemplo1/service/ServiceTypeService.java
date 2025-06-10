@@ -2,6 +2,7 @@ package com.freitas.exemplo1.service;
 
 import com.freitas.exemplo1.model.ServiceType;
 import com.freitas.exemplo1.repository.ServiceTypeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -2,6 +2,7 @@ package com.freitas.exemplo1.service;
 
 import com.freitas.exemplo1.model.User;
 import com.freitas.exemplo1.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

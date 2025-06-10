@@ -2,9 +2,11 @@ package com.freitas.exemplo1.config;
 
 import com.freitas.exemplo1.model.ServiceType;
 import com.freitas.exemplo1.repository.ServiceTypeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class DataInitializer implements CommandLineRunner {

@@ -1,13 +1,14 @@
 package com.freitas.exemplo1.service;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Slf4j
 @Service
 public class EmailService {
+    private static final Logger log = LoggerFactory.getLogger(EmailService.class);
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public void sendAppointmentConfirmation(String to, String petName, LocalDateTime appointmentDateTime) {
