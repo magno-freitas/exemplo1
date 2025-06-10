@@ -1,19 +1,30 @@
 package com.freitas.model;
 
-import javax.persistence.*;
+import lombok.Data;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@Data
 @Entity
 @Table(name = "pets")
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String species;
+
+    @Column(nullable = false)
     private String breed;
+
+    @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    @Column(name = "health_status")
     private String healthStatus;
     
     @ManyToOne

@@ -1,7 +1,8 @@
 package com.freitas.exemplo1.model;
 
 import lombok.Data;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -27,9 +28,77 @@ public class Client {
     @Column(name = "cpf", length = 11, unique = true)
     private String cpf;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Pet> pets;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pet> pets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "client")
-    private List<Appointment> appointments;
+    // Constructors
+    public Client() {}
+    
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    // Helper method to maintain bidirectional relationship
+    public void addPet(Pet pet) {
+        pets.add(pet);
+        pet.setOwner(this);
+    }
+
+    public void removePet(Pet pet) {
+        pets.remove(pet);
+        pet.setOwner(null);
+    }
 }

@@ -1,6 +1,7 @@
 package com.freitas.exemplo1.repository;
 
 import com.freitas.exemplo1.model.Appointment;
+import com.freitas.exemplo1.model.ServiceType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

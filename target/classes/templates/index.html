@@ -1,352 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <title>FocinhosExigentes</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav__header">
-        <div class="nav__logo">
-          <a href="#">FocinhosExigentes</a>
-        </div>
-        <div class="nav__menu__btn" id="menu-btn">
-          <i class="ri-menu-line"></i>
-        </div>
-      </div>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#Cadastro">Cadastro</a></li>
-       
-        <li><a href="#Serviço">Serviço</a></li>
-        <li><a href="#Login">Login</a></li>
-      </ul>
-    </nav>
-    <header id="home">
-      <div class="section__container header__container">
-        <div class="header__content">
-          <h4>Bem-vindo</h4>
-          <h1>Focinhos<br /><span>Exigentes</span></h1>
-          <h2>Nós amamos animais de estimação como você :)</h2>
-          <p>
-            De exames de rotina a tratamentos especializados, estamos aqui para
-            garantir que seus animais de estimação tenham uma vida feliz e saudável.
-          </p>
-          <div class="header__btn">
-            <button>
-              Comece aqui!
-              <span><i class="ri-arrow-right-line"></i></span>
-            </button>
-          </div>
-        </div>
-        <div class="header__image">
-          <img
-            src="assets/header-bg.png"
-            alt="header-bg"
-            class="header__image-bg"
-          />
-          <img src="assets/header.png" alt="header" />
-        </div>
-      </div>
-      <div class="header__bottom"></div>
-    </header>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Focinhos Exigentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
 
-    <section class="section__container intro__container">
-      <h2 class="section__header">Conheça-nos melhor</h2>
-      <div class="intro__grid">
-        <div class="intro__card">
-          <div class="intro__image">
-            <img src="assets/intro-1.png" alt="intro" />
-          </div>
-          <h4>Especialistas em animais de estimação</h4>
-          <p>
-            Conheça nossa equipe de veterinários qualificados, dedicados ao bem-estar do seu animal de estimação.
-          </p>
-          <a href="#">Leia mais</a>
-        </div>
-        <div class="intro__card">
-          <div class="intro__image">
-            <img src="assets/intro-2.png" alt="intro" />
-          </div>
-          <h4>Serviços veterinários</h4>
-          <p>
-            Oferecemos uma ampla gama de serviços veterinários para manter seus animais de estimação
-            saudáveis e felizes.
-          </p>
-          <a href="#">Leia mais</a>
-        </div>
-        <div class="intro__card">
-          <div class="intro__image">
-            <img src="assets/intro-3.png" alt="intro" />
-          </div>
-          <h4>Contate-nos</h4>
-          <p>
-            Entre em contato conosco para tirar dúvidas ou agendar uma consulta
-para cuidar do seu animal de estimação.
-          </p>
-          <a href="#">Leia mais</a>
-        </div>
-      </div>
-    </section>
+        .sidebar {
+            background-color: var(--primary-color);
+            padding: 2rem;
+        }
 
-    <section class="section__container about__container" id="about">
-      <p class="section__subheader">Sobre nós</p>
-      <h2 class="section__header">O que podemos fazer por você</h2>
-      <div class="about__row">
-        <div class="about__image">
-          <img src="assets/about-1.jpg" alt="about" />
-        </div>
-        <div class="about__content">
-          <span><img src="assets/about-1-icon.png" alt="about-icon" /></span>
-          <h4>Deixe-nos ajudar você com a saúde do seu pet!</h4>
-          <p>
-            Nossos veterinários especialistas estão aqui para fornecer cuidados e orientações abrangentes
-            para garantir que seu pet permaneça com perfeita saúde.
-          </p>
-        </div>
-      </div>
-      <div class="about__row">
-        <div class="about__image">
-          <img src="assets/about-2.jpg" alt="about" />
-        </div>
-        <div class="about__content">
-          <span><img src="assets/about-2-icon.png" alt="about-icon" /></span>
-          <h4>Nós cuidaremos do seu pet!</h4>
-          <p>
-            Seu pet estará em boas mãos com nossa equipe compassiva e
-bem treinada, que trata cada animal como se fosse da família.
-          </p>
-        </div>
-      </div>
-      <div class="about__row">
-        <div class="about__image">
-          <img src="assets/about-3.jpg" alt="about" />
-        </div>
-        <div class="about__content">
-          <span><img src="assets/about-3-icon.png" alt="about-icon" /></span>
-          <h4>Pet-shop acessível</h4>
-          <p>
-            Do banho ao penteado, oferecemos serviços profissionais de higiene para
-            manter seu pet com a melhor aparência e bem-estar.
-          </p>
-        </div>
-      </div>
-    </section>
+        .sidebar-menu {
+            margin-top: 2rem;
+        }
 
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--text-dark);
+            transition: 0.3s;
+            border-radius: 8px;
+        }
 
-    <section class="section__container service__container" id="service">
-      <p class="section__subheader">Serviços</p>
-      <h2 class="section__header">O que podemos fazer por você</h2>
-      <div class="service__flex">
-        <div class="service__card">
-          <div>
-            <img src="assets/service-1.png" alt="service" />
-          </div>
-          <p>Atendimento de Emergência</p>
-        </div>
-        <div class="service__card">
-          <div>
-            <img src="assets/service-2.png" alt="service" />
-          </div>
-          <p>Serviços de Vacinação</p>
-        </div>
-        <div class="service__card">
-          <div>
-            <img src="assets/service-3.png" alt="service" />
-          </div>
-          <p>Aconselhamento Nutricional</p>
-        </div>
-        <div class="service__card">
-          <div>
-            <img src="assets/service-4.png" alt="service" />
-          </div>
-          <p>Consulta Comportamental</p>
-        </div>
-        
-      </div>
-    </section>
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
 
-    <section class="client">
-      <div class="section__container client__container">
-        <p class="section__subheader">Comentários</p>
-        <h2 class="section__header">Confira nossos comentários</h2>
-        <!-- Slider main container -->
-        <div class="swiper">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-              <div class="client__card">
-                <div class="client__details">
-                  <img src="assets/client-1.jpg" alt="client" />
-                  <div>
-                    <h4>Sarah Johnson</h4>
-                    <h5>Designer Gráfico</h5>
-                  </div>
-                </div>
-                <p>
-                  O atendimento que meu cachorro recebeu na Focinhos Exigentes foi excepcional!
-Os veterinários foram atenciosos e se preocuparam com o bem-estar do meu cachorro.
-                </p>
-              </div>
+        .main-content {
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-card p {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .appointments-list {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .appointments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .new-appointment-btn {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .new-appointment-btn:hover {
+            background-color: #c5bef5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        td {
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .status-confirmed {
+            background-color: #e3f5e6;
+            color: #0a6c1f;
+        }
+
+        .status-pending {
+            background-color: #fff4e5;
+            color: #b25e09;
+        }
+
+        .status-cancelled {
+            background-color: #ffe5e5;
+            color: #c11414;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="nav__logo">
+                <a href="../index.html">FocinhosExigentes</a>
             </div>
-            <div class="swiper-slide">
-              <div class="client__card">
-                <div class="client__details">
-                  <img src="assets/client-2.jpg" alt="client" />
-                  <div>
-                    <h4>Michael Adams</h4>
-                    <h5>Engenheiro de Software</h5>
-                  </div>
-                </div>
-                <p>
-                  A Focinhos Exigentes salvou meu gato durante uma emergência! Sua resposta rápida e competência fizeram toda a diferença.
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="client__card">
-                <div class="client__details">
-                  <img src="assets/client-3.jpg" alt="client" />
-                  <div>
-                    <h4>Emily Martinez</h4>
-                    <h5>Professora</h5>
-                  </div>
-                </div>
-                <p>
-                  Confio todos os meus animais de estimação à essa clínica. A equipe deles é
-profissional e sempre se esforça ao máximo pelos seus
-pacientes.
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="client__card">
-                <div class="client__details">
-                  <img src="assets/client-4.jpg" alt="client" />
-                  <div>
-                    <h4>Jason Lee</h4>
-                    <h5>Especialista em markenting</h5>
-                  </div>
-                </div>
-                <p>
-                  Os serviços de tosa são fantásticos! Meu cachorrinho
-sempre volta com uma aparência renovada e feliz.
-                </p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="client__card">
-                <div class="client__details">
-                  <img src="assets/client-5.jpg" alt="client" />
-                  <div>
-                    <h4>David Thompson</h4>
-                    <h5>Contador</h5>
-                  </div>
-                </div>
-                <p>
-                  Nunca vi uma equipe tão dedicada aos animais. Essa é a
-minha clínica preferida para todos os problemas relacionados a animais de estimação.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            <nav class="sidebar-menu">
+                <a href="#" class="active">
+                    <i class="ri-dashboard-line"></i>
+                    Dashboard
+                </a>
+                <a href="#">
+                    <i class="ri-calendar-line"></i>
+                    Agendamentos
+                </a>
+                <a href="#">
+                    <i class="ri-file-list-line"></i>
+                    Prontuários
+                </a>
+                <a href="#">
+                    <i class="ri-syringe-line"></i>
+                    Vacinas
+                </a>
+                <a href="#">
+                    <i class="ri-user-line"></i>
+                    Perfil
+                </a>
+                <a href="#" onclick="handleLogout()">
+                    <i class="ri-logout-box-line"></i>
+                    Sair
+                </a>
+            </nav>
+        </aside>
 
-    <section class="section__container instagram__container">
-      <p>Siga-nos</p>
-      <h2 class="section__header">Instagram</h2>
-      <div class="instagram__grid">
-        <img src="assets/instagram-1.jpg" alt="instagram" />
-        <img src="assets/instagram-2.jpg" alt="instagram" />
-        <img src="assets/instagram-3.jpg" alt="instagram" />
-        <img src="assets/instagram-4.jpg" alt="instagram" />
-      </div>
-    </section>
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h2>Dashboard</h2>
+                <div id="userInfo">
+                    Bem-vindo(a), <span id="userName">Usuário</span>
+                </div>
+            </div>
 
-    <footer id="contact">
-      <div class="section__container footer__container">
-        <div class="footer__col">
-          <div class="footer__logo">
-            <a href="#">FocinhosExigentes</a>
-          </div>
-        </div>
-        <div class="footer__col">
-          <h4>Company</h4>
-          <ul class="footer__links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Sobre nós</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Loja</a></li>
-            <li><a href="#">Preços</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Perguntas frequentes</a></li>
-            <li><a href="#">Contate-nos</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Endereço</h4>
-          <ul class="footer__links">
-            <li><a href="#">Blumenau, Brasil</a></li>
-            <li><a href="#">Ver no Maps</a></li>
-          </ul>
-          <br />
-          <h4>Contato</h4>
-          <ul class="footer__links">
-            <li><a href="#">+55 (47)9845-8264</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Informações</h4>
-          <p>Fique atualizado com nossas últimas notícias</p>
-          <form action="/">
-            <input type="text" placeholder="Your email" />
-            <button class="btn">
-              <i class="ri-arrow-right-line"></i>
-            </button>
-          </form>
-          <br />
-          <h4>Siga-nos</h4>
-          <ul class="footer__socials">
-            <li>
-              <a href="#"><i class="ri-facebook-fill"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="ri-twitter-fill"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="ri-youtube-fill"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="ri-pinterest-line"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="ri-instagram-line"></i></a>
-            </li>
-            <li>
-              <a href="#"><i class="ri-tiktok-fill"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-    </footer>
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>Próximas Consultas</h3>
+                    <p id="upcomingAppointments">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Vacinas Pendentes</h3>
+                    <p id="pendingVaccines">0</p>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Pets Cadastrados</h3>
+                    <p id="registeredPets">0</p>
+                </div>
+            </div>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="main.js"></script>
-    
-  </body>
+            <div class="appointments-list">
+                <div class="appointments-header">
+                    <h3>Agendamentos</h3>
+                    <button class="new-appointment-btn" onclick="showNewAppointmentModal()">
+                        <i class="ri-add-line"></i> Novo Agendamento
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Pet</th>
+                            <th>Serviço</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTable">
+                        <!-- Appointments will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Check authentication
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '../login/login.html';
+            }
+            // TODO: Validate token with backend
+        }
+
+        // Load user data
+        function loadUserData() {
+            // TODO: Fetch user data from backend
+            fetch('/api/user', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userName').textContent = data.name;
+                document.getElementById('upcomingAppointments').textContent = data.upcomingAppointments;
+                document.getElementById('pendingVaccines').textContent = data.pendingVaccines;
+                document.getElementById('registeredPets').textContent = data.registeredPets;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Load appointments
+        function loadAppointments() {
+            // TODO: Fetch appointments from backend
+            fetch('/api/appointments', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            .then(response => response.json())
+            .then(appointments => {
+                const tbody = document.getElementById('appointmentsTable');
+                tbody.innerHTML = appointments.map(appointment => `
+                    <tr>
+                        <td>${appointment.date}</td>
+                        <td>${appointment.time}</td>
+                        <td>${appointment.petName}</td>
+                        <td>${appointment.service}</td>
+                        <td><span class="status-badge status-${appointment.status.toLowerCase()}">${appointment.status}</span></td>
+                        <td>
+                            <button onclick="editAppointment(${appointment.id})">
+                                <i class="ri-edit-line"></i>
+                            </button>
+                            <button onclick="cancelAppointment(${appointment.id})">
+                                <i class="ri-close-line"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('token');
+            window.location.href = '../login/login.html';
+        }
+
+        function showNewAppointmentModal() {
+            // TODO: Implement appointment creation modal
+            alert('Funcionalidade em desenvolvimento');
+        }
+
+        function editAppointment(id) {
+            // TODO: Implement appointment editing
+            alert('Funcionalidade em desenvolvimento');
+        }
+
+        function cancelAppointment(id) {
+            // TODO: Implement appointment cancellation
+            if (confirm('Deseja realmente cancelar este agendamento?')) {
+                fetch(`/api/appointments/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(() => loadAppointments())
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Initialize dashboard
+        checkAuth();
+        loadUserData();
+        loadAppointments();
+    </script>
+</body>
 </html>

@@ -1,7 +1,7 @@
 package com.freitas.exemplo1.model;
 
 import lombok.Data;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -12,11 +12,11 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pet_id", nullable = false)
     private Pet pet;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Client client;
 
@@ -26,8 +26,8 @@ public class Appointment {
     @Column(nullable = false)
     private LocalDateTime endTime;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "service_type_id", nullable = false)
     private ServiceType serviceType;
 
     @Enumerated(EnumType.STRING)
@@ -42,5 +42,11 @@ public class Appointment {
 
     public enum AppointmentStatus {
         SCHEDULED, COMPLETED, CANCELLED, RESCHEDULED
+    }
+
+    // Helper method to set both sides of the relationship
+    public void setPet(Pet pet) {
+        this.pet = pet;
+        this.client = pet != null ? pet.getOwner() : null;
     }
 }

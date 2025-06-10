@@ -1,7 +1,7 @@
 package com.freitas.exemplo1.model;
 
 import lombok.Data;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Set;
 
 @Data
